@@ -1,0 +1,51 @@
+﻿@model IEnumerable<ASP.NET_MVC_Core.Models.Product>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BarcodeNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BarcodeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantity)
+            </td>
+            <td>
+                    @Html.ActionLink("Update", "UpdateProduct", new {  productId = item.Id })
+
+
+                    @using (Html.BeginForm("DeleteProduct", "Product", new { productId = item.Id }))
+                    {
+                        <button>Delete</button>
+                    }
+                   
+
+                  
+            </td>
+        </tr>
+
+}
+    </tbody>
+</table>
